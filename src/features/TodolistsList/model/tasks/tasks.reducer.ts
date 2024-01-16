@@ -11,7 +11,7 @@ import {
   TaskType,
   UpdateTaskArgType,
   UpdateTaskModelType
-} from "../../api/taskaApi.types";
+} from "../../api/taskApi.types";
 
 const fetchTasks = createAppAsyncThunk<{ tasks: TaskType[]; todolistId: string }, string>(
   "tasks/fetchTasks",

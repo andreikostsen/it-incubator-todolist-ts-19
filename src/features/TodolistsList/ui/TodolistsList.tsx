@@ -21,9 +21,6 @@ export const TodolistsList = () => {
 
   const {fetchTodolists, addTodolist: addTodolistTC} = useActions(todolistsThunks)
 
-
-
-
   useEffect(() => {
     if (!isLoggedIn) {
       return;
@@ -74,6 +71,7 @@ export const TodolistsList = () => {
 
   return (
     <>
+      {/* TODO: Fix inline style*/}
       <Grid container style={{ padding: "20px" }}>
         <AddItemForm addItem={addTodolist} />
       </Grid>

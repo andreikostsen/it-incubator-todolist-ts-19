@@ -1,6 +1,6 @@
 import { instance } from "common/api/common.api";
 import { ResponseType } from "common/types/common.types";
-import {AddTaskArgType, GetTasksResponse, RemoveTaskArgType, TaskType, UpdateTaskModelType} from "./taskaApi.types";
+import {AddTaskArgType, GetTasksResponse, RemoveTaskArgType, TaskType, UpdateTaskModelType} from "./taskApi.types";
 
 export const taskApi = {
 
