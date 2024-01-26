@@ -1,6 +1,6 @@
-import { Dispatch } from "redux";
+import {AnyAction, Dispatch} from "redux";
 import { authActions } from "features/auth/model/auth.slice";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {createSlice, isFulfilled, isPending, isRejected, PayloadAction} from "@reduxjs/toolkit";
 import { authAPI } from "features/auth/api/auth.api";
 import {createAppAsyncThunk} from "../common/utils";
 
@@ -20,13 +20,38 @@ const slice = createSlice({
     setAppError: (state, action: PayloadAction<{ error: string | null }>) => {
       state.error = action.payload.error;
     },
-    setAppStatus: (state, action: PayloadAction<{ status: RequestStatusType }>) => {
-      state.status = action.payload.status;
-    },
+    // setAppStatus: (state, action: PayloadAction<{ status: RequestStatusType }>) => {
+    //   state.status = action.payload.status;
+    // },
     setAppInitialized: (state, action: PayloadAction<{ isInitialized: boolean }>) => {
       state.isInitialized = action.payload.isInitialized;
     },
   },
+  extraReducers: (builder) => {
+    builder
+        .addMatcher(
+            // (action: AnyAction) => action.type.endsWith("/fulfilled"),
+            isFulfilled,
+            (state) => {
+              state.status = "succeeded"
+            }
+        )
+        .addMatcher(
+            // (action: AnyAction) => action.type.endsWith("/rejected"),
+            isRejected,
+            (state) => {
+              state.status = "failed"
+            }
+        )
+        .addMatcher(
+            // (action: AnyAction) => action.type.endsWith("/pending"),
+            isPending,
+            (state) => {
+              state.status = "loading"
+            }
+        )
+
+  }
 });
 
 export const appReducer = slice.reducer;

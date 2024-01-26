@@ -8,5 +8,5 @@ export const handleServerAppError = <D>(data: ResponseType<D>, dispatch: Dispatc
   } else {
     dispatch(appActions.setAppError({ error: "Some error occurred" }));
   }
-  dispatch(appActions.setAppStatus({ status: "failed" }));
+  // dispatch(appActions.setAppStatus({ status: "failed" }));
 };
